@@ -3,17 +3,17 @@ import {describe, test, expect} from "@jest/globals"
 import wordsearch from './wordsearch'
 
 const board = [
-  ['u', 'n', 'i', 'x', 'o', 'h', 't', 'u'],
-  ['m', 'm', 'k', 'g', 'i', 'y', 'p', 'h'],
-  ['m', 'o', 'n', 'z', 'a', 'v', 'k', 'j'],
-  ['l', 'e', 'p', 's', 'u', 'x', 'z', 'c'],
-  ['k', 'h', 'x', 'g', 'd', 'n', 'y', 'r'],
-  ['c', 'c', 'i', 'm', 'i', 'm', 'w', 'a'],
-  ['y', 'd', 'x', 'a', 'o', 'p', 'r', 't'],
-  ['w', 's', 'q', 'b', 'r', 'i', 'd', 's']
+  ['u', 'n', 'i', 'x', 'l', 'h', 't', 'u'],
+  ['m', 'm', 'k', 'g', 'i', 'o', 'p', 'h'],
+  ['m', 'o', 'n', 'z', 'a', 'v', 'o', 'j'],
+  ['l', 'e', 'p', 's', 'u', 'x', 'z', 'm'],
+  ['b', 'h', 'x', 'g', 'd', 'n', 'y', 'r'],
+  ['c', 'o', 'i', 'm', 'i', 'm', 'w', 'a'],
+  ['y', 'd', 'o', 'a', 'o', 'p', 'r', 't'],
+  ['w', 's', 'q', 'k', 'r', 'i', 'd', 's']
 ]
 
-describe("wordsearch.horizontal", () => {
+describe("wordsearch", () => {
   test("returns true when word is contained in a rows", () => {
     const result = wordsearch.horizontal(board, "unix")
     expect(result).toBe(true);
@@ -39,13 +39,23 @@ describe("wordsearch.horizontal", () => {
     expect(result).toBe(true)
   })
 
-  test("returns true when word is in diagonal", () => {
-    const result = wordsearch.diagonal(board, "nsdm")
+  test("returns true when word is in diagonal first half", () => {
+    const result = wordsearch.diagonalFirstHalf(board, "loom")
     expect(result).toBe(true)
   })
 
-  test("returns true when word is in diagonal backwords", () => {
-    const result = wordsearch.diagonal(board, "mdsn")
+  test("returns true when word is in diagonal backwords first half", () => {
+    const result = wordsearch.diagonalFirstHalf(board, "mool")
+    expect(result).toBe(true)
+  })
+  
+  test("returns true when word is in diagonal second half", () => {
+    const result = wordsearch.diagonalSecondHalf(board, "book")
+    expect(result).toBe(true)
+  })
+
+  test("returns true when word is in diagonal backwords second half", () => {
+    const result = wordsearch.diagonalSecondHalf(board, "koob")
     expect(result).toBe(true)
   })
 })

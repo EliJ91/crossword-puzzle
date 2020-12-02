@@ -27,21 +27,30 @@ export default {
       }
     }
   },
-  diagonal: function(board,word){
+  diagonalFirstHalf: function(board,word){
     for(let y =0; y<board.length; y++){
-      let newArray = []
-      for(let x = 0; x<board[y].length; x++){
-        newArray.push(board[x][y+x])
+        let newArray = []
+        for(let x = 0; x<board[y].length; x++){
+          newArray.push(board[x][y+x])
+        }
+        if(this.findWord(word, newArray)) {
+          return true
+        }
       }
-      if(this.findWord(word, newArray)) {
-        return true
-      }
-    }
-
   },
-  
+  diagonalSecondHalf: function(board,word){
+    for(let y =0; y<board.length; y++){
+        let newArray = []
+        for(let x = 0; x<board[y].length; x++){
+          newArray.push(board[x][Math.abs(x-y)])
+        }
+        if(this.findWord(word, newArray)) {
+          return true
+        }
+      }
+  },
 
   hasWord: function(board, word) {
-    return this.horizontal(board, word) || this.vertical(board, word) || this.diagonal(board, word)
+    return this.horizontal(board, word) || this.vertical(board, word) || this.diagonalFirstHalf(board, word) || this.diagonalSecondHalf(board, word)
   }
 }
