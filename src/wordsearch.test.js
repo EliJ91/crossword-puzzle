@@ -44,7 +44,7 @@ describe("wordsearch.horizontal", () => {
     expect(result).toBe(true)
   })
 
-  test("returns true when word is in diagonal", () => {
+  test("returns true when word is in diagonal backwords", () => {
     const result = wordsearch.diagonal(board, "mdsn")
     expect(result).toBe(true)
   })
